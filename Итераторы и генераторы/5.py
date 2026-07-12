@@ -20,6 +20,6 @@ class CycleIterator:
 
 object1 = CycleIterator(list(range(1,11)), 5)
 for i in object1:
-    print(i)
+    print(*i, sep = ', ')
 
 
