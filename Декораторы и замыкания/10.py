@@ -22,6 +22,3 @@ def history_buffer(total):
 func = history_buffer(3)
 for _ in range(10):
     print(func(input('text: ')))
-
-
-
