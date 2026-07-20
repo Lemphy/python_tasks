@@ -1,7 +1,6 @@
 # Создай декоратор, который сохраняет результаты выполнения функции в словарь.
 # Если функция вызывается с теми же аргументами повторно, она должна возвращать готовый результат из кэша,
 # а не вычислять его заново.
-import time
 
 def cache_result(func):
     storage = {5 : 25}
@@ -15,16 +14,6 @@ def cache_result(func):
             return storage[value]
     return wrapper
 
-def timer(func):
-    def wrapper(*args):
-        start = time.time()
-        work = func(*args)
-        end = time.time()
-        print(f'Время работы: {end - start:.2e}')
-        return work
-    return wrapper
-
-@timer
 @cache_result
 def to_square(value):
     return value ** 2
