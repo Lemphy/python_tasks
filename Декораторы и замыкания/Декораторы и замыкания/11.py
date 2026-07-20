@@ -2,22 +2,18 @@
 # Он должен подсчитывать и сохранять внутри себя количество вызовов функции.
 
 class CountCalls:
-    def __init__(self):
+    def __init__(self, function):
         self.counter = 0
+        self.func = function
 
-    def __call__(self, function):
-        def wrapper():
-            self.counter += 1
-            temp = function()
-            return (f'Результат функции: {temp}\n'
-                    f'Объект {function} вызван {self.counter} раз.')
-        return wrapper
-
-deco = CountCalls() # создаем вызываемый объект
+    def __call__(self, *args, **kwargs):
+        self.counter += 1
+        result = self.func(*args, **kwargs)
+        print(f'Функция {self.func} вызвана {self.counter} раз')
+        return result
 
 def greeting():
     return 'Hello'
 
-greet = deco(greeting) # вызываем объект, который принимает функцию как аргумент, возвращается обертка, замкнувшая в себе ссылку на переданную функцию
-print(greeting()) # вызываем обертку, где реализован счетчик и вызов функции
+greeting = CountCalls(greeting)
 print(greeting())
