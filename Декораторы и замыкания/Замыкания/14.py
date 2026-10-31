@@ -6,11 +6,11 @@
 def grade_tracker():
     scores = []
     def get_avg_score(score):
-        if 1 <= score <= 5:
+        if score in range(1, 6):
             scores.append(score)
             return sum(scores) / len(scores)
         else:
-            return sum(scores) / len(scores)
+            return sum(scores) / len(scores) if scores else 'Считать нечего.'
     return get_avg_score
 
 func = grade_tracker()
