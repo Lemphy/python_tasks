@@ -2,22 +2,28 @@
 # строку в соответствующие HTML-теги (<b>...</b>, <i>...</i>, <u>...</u>).
 
 def bold(func):
-    def wrapper():
-        return f'<b>{func()}</b>'
+    def wrapper(text: str):
+        return f'<b>{func(text)}</b>'
     return wrapper
 
 def italic(func):
-    def wrapper():
-        return f'<i>{func()}</i>'
+    def wrapper(text:str):
+        return f'<i>{func(text)}</i>'
     return wrapper
 
 def underline(func):
-    def wrapper():
-        return f'<u>{func()}</u>'
+    def wrapper(text:str):
+        return f'<u>{func(text)}</u>'
     return wrapper
 
-def text():
-    return 'Hello'
+@bold
+@italic
+@underline
+def greeting(text):
+    return f'Hello, {text}'
 
-text_variable = bold(italic(underline(text)))
-print(text_variable())
+print(greeting('Mykhailo'))
+
+# Аналогично:
+# greeting_decorated = bold(italic(underline(greeting)))
+# print(greeting_decorated('Mykhailo'))
